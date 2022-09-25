@@ -276,7 +276,11 @@ impl ExpnId {
 
     #[inline]
     pub fn as_local(self) -> Option<LocalExpnId> {
-        if self.krate == LOCAL_CRATE { Some(LocalExpnId::from_raw(self.local_id)) } else { None }
+        if self.krate == LOCAL_CRATE {
+            Some(LocalExpnId::from_raw(self.local_id))
+        } else {
+            None
+        }
     }
 
     #[inline]
@@ -1148,6 +1152,7 @@ pub enum DesugaringKind {
     Await,
     ForLoop,
     WhileLoop,
+    DoubleQuestionMark,
 }
 
 impl DesugaringKind {
@@ -1163,6 +1168,7 @@ impl DesugaringKind {
             DesugaringKind::OpaqueTy => "`impl Trait`",
             DesugaringKind::ForLoop => "`for` loop",
             DesugaringKind::WhileLoop => "`while` loop",
+            DesugaringKind::DoubleQuestionMark => "operator `??`",
         }
     }
 }
