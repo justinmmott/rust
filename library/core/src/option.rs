@@ -2327,6 +2327,10 @@ impl<T> const ops::Residual<T> for Option<convert::Infallible> {
     type TryType = Option<T>;
 }
 
+#[unstable(feature = "try_coalescing_v1", issue = "N/A")]
+#[rustc_const_unstable(feature = "const_convert", issue = "88674")]
+impl<T> const ops::TryCoalescing for Option<T> {}
+
 impl<T> Option<Option<T>> {
     /// Converts from `Option<Option<T>>` to `Option<T>`.
     ///
